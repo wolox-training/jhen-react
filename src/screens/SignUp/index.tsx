@@ -13,8 +13,8 @@ import logo from './assets/logo-wolox-original.png';
 
 interface User {
   email: string;
+  firstName: string;
   lastName: string;
-  name: string;
   pasword: string;
   passwordConfirmation: string;
   [key: string]: any;
@@ -26,8 +26,8 @@ function SignUp() {
   const maxPassword = 16;
   const defaultValues = {
     email: '',
+    firstName: '',
     lastName: '',
-    name: '',
     password: '',
     passwordConfirmation: ''
   };
@@ -35,8 +35,8 @@ function SignUp() {
     email: Yup.string()
       .required(requiredMessage)
       .email('El email es inválido'),
+    firstName: Yup.string().required(requiredMessage),
     lastName: Yup.string().required(requiredMessage),
-    name: Yup.string().required(requiredMessage),
     password: Yup.string()
       .required(requiredMessage)
       .min(minPasword, `La contraseña debe ser de mínimo ${minPasword} caracteres`)
@@ -64,7 +64,7 @@ function SignUp() {
     <Container>
       <form className={styles.form}>
         <img src={logo} className={styles.logo} alt="Logo original de wolox" />
-        <Input name="name" label="Nombre" register={register} errors={errors} />
+        <Input name="firstName" label="Nombre" register={register} errors={errors} />
         <Input name="lastName" label="Apellido" register={register} errors={errors} />
         <Input name="email" label="Email" register={register} errors={errors} />
         <Input type="password" name="password" label="Password" register={register} errors={errors} />
