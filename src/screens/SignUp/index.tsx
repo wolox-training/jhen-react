@@ -1,5 +1,3 @@
-import { InputType } from 'zlib';
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,6 +17,7 @@ interface User {
   name: string;
   pasword: string;
   passwordConfirmation: string;
+  [key: string]: any;
 }
 
 function SignUp() {
@@ -57,6 +56,7 @@ function SignUp() {
     resolver: yupResolver(validationSchema)
   });
   const onSubmit = (data: User) => {
+    data.locale = 'en';
     console.log({ user: { ...objectCamelToSnake(data) } });
   };
 
