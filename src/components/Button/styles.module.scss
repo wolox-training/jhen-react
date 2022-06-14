@@ -1,0 +1,22 @@
+@import '../../scss/variables/colors';
+
+.button {
+  background-color: $cultured;
+  border: 2px solid $pear;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: $pear;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+.primary {
+  background-color: $pear;
+  color: $white;
+}
+
+.small {
+  height: 32px;
+  width: 252px;
+}

@@ -1,0 +1,16 @@
+@import '../../scss/variables/colors';
+
+.container {
+  align-items: center;
+  background-color: $cultured;
+  border-top: 8px solid $vivid-cerulean;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.logo {
+  height: 70px;
+  margin-bottom: 16px;
+  width: 212px;
+}

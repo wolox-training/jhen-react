@@ -1,0 +1,40 @@
+@import '../../scss/variables/colors';
+
+.container {
+  margin-bottom: 16px;
+  width: 252px;
+}
+
+.label {
+  color: $black;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.input {
+  background-color: $white;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: $black;
+  height: 32px;
+  padding: 16px 10px;
+  transition: 0.5s;
+  width: 100%;
+
+  &:focus {
+    border: 1px solid $vivid-cerulean;
+  }
+}
+
+.inputError {
+  border: 1px solid $red;
+
+  &:focus {
+    border: 1px solid $red;
+  }
+}
+
+.error {
+  color: $red;
+}
