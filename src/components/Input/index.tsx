@@ -1,5 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
 
+import ErrorMessage from 'components/ErrorMessage';
+
 import styles from './styles.module.scss';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -22,7 +24,7 @@ function Input({ errors = {}, label, name, register, rules = {}, type = 'text', 
         ref={register && register(rules)}
         {...rest}
       />
-      {errors[name] && <p className={styles.error}>{errors[name].message}</p>}
+      {errors[name] && <ErrorMessage error={errors[name].message} />}
     </div>
   );
 }
