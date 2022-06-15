@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Language from 'components/Language';
+
 import styles from './styles.module.scss';
 
 interface Props {
@@ -11,6 +13,7 @@ function Layout({ children }: Props) {
     <div className={styles.layout}>
       {/* Future Header */}
       <div className={styles.container}>{children}</div>
+      <Language />
       {/* Future footer */}
     </div>
   );

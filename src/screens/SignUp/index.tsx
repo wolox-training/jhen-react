@@ -2,20 +2,20 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { objectCamelToSnake } from 'utils/case';
 import { MAX_PASSWORD, MIN_PASSWORD } from 'constants/constants';
-import { REQUIRED_MESSAGE } from 'constants/messages';
 import { User } from 'types/user';
 
 import styles from './styles.module.scss';
 
 function SignUp() {
-  const requiredMessage = REQUIRED_MESSAGE;
-  const minPasword = MIN_PASSWORD;
+  const { t, i18n } = useTranslation();
+  const minPassword = MIN_PASSWORD;
   const maxPassword = MAX_PASSWORD;
   const defaultValues = {
     email: '',
@@ -26,17 +26,17 @@ function SignUp() {
   };
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .required(requiredMessage)
-      .email('El email es inválido'),
-    firstName: Yup.string().required(requiredMessage),
-    lastName: Yup.string().required(requiredMessage),
+      .required()
+      .email(),
+    firstName: Yup.string().required(),
+    lastName: Yup.string().required(),
     password: Yup.string()
-      .required(requiredMessage)
-      .min(minPasword, `La contraseña debe ser de mínimo ${minPasword} caracteres`)
-      .max(maxPassword, `La contraseña debe ser de máximo ${maxPassword} caracteres`),
+      .required()
+      .min(minPassword)
+      .max(maxPassword),
     passwordConfirmation: Yup.string()
-      .required(requiredMessage)
-      .oneOf([Yup.ref('password'), null], 'La confirmación de la contraseña no coincide')
+      .required()
+      .oneOf([Yup.ref('password'), null])
   });
   const {
     register,
@@ -49,27 +49,33 @@ function SignUp() {
     resolver: yupResolver(validationSchema)
   });
   const onSubmit = (data: User) => {
-    data.locale = 'en';
+    data.locale = i18n.language;
     console.log({ user: { ...objectCamelToSnake(data) } });
   };
 
   return (
     <Container>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Input name="firstName" label="Nombre" register={register} errors={errors} />
-        <Input name="lastName" label="Apellido" register={register} errors={errors} />
-        <Input name="email" label="Email" register={register} errors={errors} />
-        <Input type="password" name="password" label="Password" register={register} errors={errors} />
+        <Input name="firstName" label={t('SignUp:lblName')} register={register} errors={errors} />
+        <Input name="lastName" label={t('SignUp:lblLastName')} register={register} errors={errors} />
+        <Input name="email" label={t('SignUp:lblEmail')} register={register} errors={errors} />
         <Input
           type="password"
-          name="passwordConfirmation"
-          label="Confirmación de Password"
+          name="password"
+          label={t('SignUp:lblPassword')}
           register={register}
           errors={errors}
         />
-        <Button type="submit" primary label="Sign Up" />
+        <Input
+          type="password"
+          name="passwordConfirmation"
+          label={t('SignUp:lblPasswordConfirm')}
+          register={register}
+          errors={errors}
+        />
+        <Button type="submit" label={t('SignUp:lblSignUp')} primary />
       </form>
-      <Button label="Login" onClick={() => reset()} />
+      <Button label={t('SignUp:lblLogin')} onClick={() => reset()} />
     </Container>
   );
 }
