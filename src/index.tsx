@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 
 import App from 'components/App';
 import 'config/i18n';
+import 'config/yup';
 import 'scss/application.scss';
 
 import reportWebVitals from './reportWebVitals';
