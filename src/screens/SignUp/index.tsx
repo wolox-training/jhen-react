@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
 import Button from 'components/Button';
-import { objectCamelToSnake } from 'utils/case';
 import { MAX_PASSWORD, MIN_PASSWORD } from 'constants/constants';
 import { User } from 'types/user';
+import { useLazyRequest } from 'hooks/useRequest';
+import Messages from 'components/Messages';
+
+import { signUp } from '../../services/UserService';
 
 import styles from './styles.module.scss';
 
 function SignUp() {
   const { t, i18n } = useTranslation();
+  const [showError, setShowError] = useState(false);
+
   const minPassword = MIN_PASSWORD;
   const maxPassword = MAX_PASSWORD;
   const defaultValues = {
@@ -48,9 +54,26 @@ function SignUp() {
     defaultValues,
     resolver: yupResolver(validationSchema)
   });
-  const onSubmit = (data: User) => {
-    data.locale = i18n.language;
-    console.log({ user: { ...objectCamelToSnake(data) } });
+
+  const [state, loading, error, request] = useLazyRequest({
+    request: signUp,
+    withPostSuccess: (response: any) => {
+      if (response) {
+        // Go Dashboard
+      }
+    },
+    withPostFailure: (err: any) => {
+      if (err.errorData?.errors) {
+        setShowError(true);
+      } else {
+        toast.error(t('Services:genericError'));
+      }
+    }
+  });
+
+  const onSubmit = (user: User) => {
+    user.locale = i18n.language;
+    request(user);
   };
 
   return (
@@ -73,9 +96,10 @@ function SignUp() {
           register={register}
           errors={errors}
         />
-        <Button type="submit" label={t('SignUp:lblSignUp')} primary />
+        <Button type="submit" label={t('SignUp:lblSignUp')} loading={loading} primary />
       </form>
-      <Button label={t('SignUp:lblLogin')} onClick={() => reset()} />
+      <Button label={t('SignUp:lblLogin')} onClick={() => reset()} loading={false} />
+      {showError && <Messages type="error" messages={error?.errorData.errors.full_messages} />}
     </Container>
   );
 }
