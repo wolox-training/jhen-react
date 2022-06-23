@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import Language from 'components/Language';
 
@@ -11,6 +12,7 @@ interface Props {
 function Layout({ children }: Props) {
   return (
     <div className={styles.layout}>
+      <Toaster position="top-right" />
       {/* Future Header */}
       <div className={styles.container}>{children}</div>
       <Language />
