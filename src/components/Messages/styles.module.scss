@@ -1,0 +1,18 @@
+@import '../../scss/variables/colors';
+
+.messagesContainer {
+  margin: 15px 5px;
+  width: 240px;
+}
+
+.success {
+  color: $lime-green;
+}
+
+.warning {
+  color: $yellow;
+}
+
+.error {
+  color: $red;
+}
