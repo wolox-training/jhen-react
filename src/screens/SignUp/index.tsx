@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -19,7 +19,6 @@ import styles from './styles.module.scss';
 
 function SignUp() {
   const { t, i18n } = useTranslation();
-  const [showError, setShowError] = useState(false);
 
   const minPassword = MIN_PASSWORD;
   const maxPassword = MAX_PASSWORD;
@@ -63,9 +62,7 @@ function SignUp() {
       }
     },
     withPostFailure: (err: any) => {
-      if (err.errorData?.errors) {
-        setShowError(true);
-      } else {
+      if (!err.errorData?.errors) {
         toast.error(t('Services:genericError'));
       }
     }
@@ -99,7 +96,9 @@ function SignUp() {
         <Button type="submit" label={t('SignUp:lblSignUp')} loading={loading} primary />
       </form>
       <Button label={t('SignUp:lblLogin')} onClick={() => reset()} loading={false} />
-      {showError && <Messages type="error" messages={error?.errorData.errors.full_messages} />}
+      {error && error?.errorData?.errors && (
+        <Messages type="error" messages={error?.errorData.errors.full_messages} />
+      )}
     </Container>
   );
 }
