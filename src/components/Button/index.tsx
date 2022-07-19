@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { withSpinner } from 'components/Spinner/index';
 import { ButtonType } from 'types/buttonType';
 
 import styles from './styles.module.scss';
@@ -22,4 +23,4 @@ function Button({ label, onClick, primary, size = 'small', type }: Props) {
   );
 }
 
-export default Button;
+export default withSpinner({ classNameContainer: `${styles.center}` })(Button);
