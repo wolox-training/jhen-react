@@ -4,14 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { MAX_PASSWORD, MIN_PASSWORD } from 'constants/constants';
 import { User } from 'types/user';
-// import { useLazyRequest } from 'hooks/useRequest';
 import Messages from 'components/Messages';
 
 import { signUp } from '../../services/UserService';
@@ -55,20 +54,6 @@ function SignUp() {
     resolver: yupResolver(validationSchema)
   });
 
-  // const [state, loading, error, request] = useLazyRequest({
-  //   request: signUp,
-  //   withPostSuccess: (response: any) => {
-  //     if (response) {
-  //       // Go Dashboard
-  //     }
-  //   },
-  //   withPostFailure: (err: any) => {
-  //     if (!err.errorData?.errors) {
-  //       toast.error(t('Services:genericError'));
-  //     }
-  //   }
-  // });
-
   const signUpMutation = useMutation((user: User) => signUp(user), {
     onSuccess: (res) => {
       // Go Dashboard
@@ -83,7 +68,6 @@ function SignUp() {
   const onSubmit = (user: User) => {
     user.locale = i18n.language;
     signUpMutation.mutate(user);
-    // request(user);
   };
 
   return (
