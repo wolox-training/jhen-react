@@ -6,5 +6,11 @@ import { ServiceResponse } from './types/serviceResponse';
 import { SignUpResponse } from './types/signUpResponse';
 
 export function signUp(user: User) {
-  return api.post<ServiceResponse<SignUpResponse>>('/users', objectCamelToSnake(user));
+  return api.post<ServiceResponse<SignUpResponse>>('/users', objectCamelToSnake(user)).then(res => {
+    if (res.ok) {
+      return res;
+    }
+
+    throw res.data;
+  });
 }
