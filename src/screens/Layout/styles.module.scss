@@ -1,6 +1,12 @@
+@import '../../scss/variables/colors';
+
 .container {
   align-items: center;
   display: flex;
   justify-content: center;
   min-height: 100vh;
+}
+
+.active {
+  color: $blue;
 }
