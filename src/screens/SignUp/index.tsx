@@ -54,7 +54,7 @@ function SignUp() {
     resolver: yupResolver(validationSchema)
   });
 
-  const { mutate, isLoading, isError, error } = useMutation((user: User) => signUp(user), {
+  const { mutate, isLoading, isSuccess, isError, error } = useMutation((user: User) => signUp(user), {
     onSuccess: (res) => {
       // Go Dashboard
     },
@@ -66,7 +66,7 @@ function SignUp() {
   })
 
   const onSubmit = (user: User) => {
-    user.locale = i18n.language;
+    user.locale = i18n?.language;
     mutate(user);
   };
 
@@ -93,7 +93,8 @@ function SignUp() {
         <Button type="submit" label={t('SignUp:lblSignUp')} loading={isLoading} primary />
       </form>
       <Button label={t('SignUp:lblLogin')} onClick={() => reset()} loading={false} />
-      {isError && <Messages type="error" messages={error.errors.full_messages} />}
+      {isError && error?.errors && <Messages type="error" messages={error.errors.full_messages} />}
+      {isSuccess && <Messages type="success" messages={[t('SignUp:successMessage')]} />}
     </Container>
   );
 }
