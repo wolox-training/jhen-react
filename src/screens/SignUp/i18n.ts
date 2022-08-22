@@ -10,7 +10,8 @@ i18next.addResources('es', 'SignUp', {
   lblLogin: 'Login',
   minPassword: 'La contraseña debe ser de mínimo {{val}} caracteres',
   maxPassword: 'La contraseña debe ser de máximo {{val}} caracteres',
-  passNotMatch: 'La confirmación de la contraseña no coincide'
+  passNotMatch: 'La confirmación de la contraseña no coincide',
+  successMessage: 'Registrado con exito'
 });
 
 i18next.addResources('en', 'SignUp', {
@@ -21,7 +22,8 @@ i18next.addResources('en', 'SignUp', {
   lblPasswordConfirm: 'Password Confirmation',
   lblSignUp: 'Sign Up',
   lblLogin: 'Login',
-  minPassword: 'La contraseña debe ser de mínimo {{val}} caracteres',
-  maxPassword: 'La contraseña debe ser de máximo {{val}} caracteres',
-  passNotMatch: 'La confirmación de la contraseña no coincide'
+  minPassword: 'The password must be at least {{val}} characters',
+  maxPassword: 'The password must be of maximum {{val}} characters',
+  passNotMatch: 'Password confirmation does not match',
+  successMessage: 'Successfully registered'
 });

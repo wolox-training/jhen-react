@@ -12,6 +12,15 @@ import reportWebVitals from './reportWebVitals';
 
 const queryClient = new QueryClient();
 
+try {
+  if (typeof window === 'undefined') {
+    const { server } = require('./mocks/msw-server');
+    server.listen();
+  }
+} catch (e) {
+  throw e;
+}
+
 const renderApp = () => {
   render(
     <React.StrictMode>
