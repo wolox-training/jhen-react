@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
@@ -92,7 +93,9 @@ function SignUp() {
         />
         <Button type="submit" label={t('SignUp:lblSignUp')} loading={isLoading} primary />
       </form>
-      <Button label={t('SignUp:lblLogin')} onClick={() => reset()} loading={false} />
+      <Link to="/">
+        <Button label={t('SignUp:lblLogin')} onClick={() => reset()} loading={false} />
+      </Link>
       {isError && error?.errors && <Messages type="error" messages={error.errors.full_messages} />}
       {isSuccess && <Messages type="success" messages={[t('SignUp:successMessage')]} />}
     </Container>
