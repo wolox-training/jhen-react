@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Container from 'components/Container';
 import Input from 'components/Input';
 import Button from 'components/Button';
+import buttonStyles from '../../components/Button/styles.module.scss';
 import { MAX_PASSWORD, MIN_PASSWORD } from 'constants/constants';
 import { User } from 'types/user';
 import Messages from 'components/Messages';
@@ -93,8 +94,8 @@ function SignUp() {
         />
         <Button type="submit" label={t('SignUp:lblSignUp')} loading={isLoading} primary />
       </form>
-      <Link to="/">
-        <Button label={t('SignUp:lblLogin')} onClick={() => reset()} loading={false} />
+      <Link to="/" className={[buttonStyles.button, buttonStyles.small, buttonStyles.center].join(' ')}>
+        {t('SignUp:lblLogin')}
       </Link>
       {isError && error?.errors && <Messages type="error" messages={error.errors.full_messages} />}
       {isSuccess && <Messages type="success" messages={[t('SignUp:successMessage')]} />}

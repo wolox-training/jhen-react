@@ -3,15 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import Container from 'components/Container';
-import Button from 'components/Button';
+import buttonStyles from '../../components/Button/styles.module.scss';
 
 function Login() {
   const { t, i18n } = useTranslation();
 
   return (
     <Container>
-      <Link to="/sign_up">
-        <Button label={t('Login:lblSignUp')} loading={false} />
+      <Link to="/sign_up" className={[buttonStyles.button, buttonStyles.small, buttonStyles.center].join(' ')}>
+        {t('Login:lblSignUp')}
       </Link>
     </Container>
   );
