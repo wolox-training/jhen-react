@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import { SignUpHandlerException } from 'mocks/signup.handlers';
 
@@ -17,7 +18,7 @@ test('render sign up label', async () => {
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
 
   const linkElement = await screen.findByText('SignUp:lblSignUp');
 
@@ -29,7 +30,7 @@ test('render required label when a required input is empty', async () => {
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
   const inputFirstName = container.getElementsByTagName('input')[0];
   const inputLastName = container.getElementsByTagName('input')[1];
   const inputEmail = container.getElementsByTagName('input')[2];
@@ -65,7 +66,8 @@ test('render malformed label when the email input is malformed', async () => {
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
+
   const inputEmail = container.getElementsByTagName('input')[2];
 
   fireEvent.change(inputEmail, { target: { value: 'julian@' } });
@@ -82,7 +84,8 @@ test('render minimum length label when the password input is short', async () =>
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
+
   const inputPassword = container.getElementsByTagName('input')[3];
 
   fireEvent.change(inputPassword, { target: { value: '123456' } });
@@ -99,7 +102,7 @@ test('render maximum length label when the password input is long', async () => 
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
   const inputPassword = container.getElementsByTagName('input')[3];
 
   fireEvent.change(inputPassword, { target: { value: '1234567890123456789' } });
@@ -116,7 +119,7 @@ test('render password confirm label when the password confirmation is wrong', as
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
   const inputPassword = container.getElementsByTagName('input')[3];
   const inputPasswordConfirmation = container.getElementsByTagName('input')[4];
 
@@ -137,7 +140,7 @@ test('do not submit the form if the required fields are empty', async () => {
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
   const mockCallBack = jest.fn();
 
   fireEvent.click(screen.getByText('SignUp:lblSignUp'));
@@ -161,7 +164,7 @@ test('submit the form and create the user', async () => {
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
   const inputFirstName = container.getElementsByTagName('input')[0];
   const inputLastName = container.getElementsByTagName('input')[1];
   const inputEmail = container.getElementsByTagName('input')[2];
@@ -187,7 +190,7 @@ test('submit the form and generate an error with the email', async () => {
     <QueryClientProvider client={queryClient}>
       <SignUp />
     </QueryClientProvider>
-  );
+  , { wrapper: MemoryRouter });
   const inputFirstName = container.getElementsByTagName('input')[0];
   const inputLastName = container.getElementsByTagName('input')[1];
   const inputEmail = container.getElementsByTagName('input')[2];
