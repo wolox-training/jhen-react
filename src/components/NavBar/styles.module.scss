@@ -1,0 +1,35 @@
+@import '../../scss/variables/colors';
+@import '../../scss/variables/constants';
+
+.navbar {
+    background-color: $white;
+    border-top: 6px solid $vivid-cerulean;
+    box-shadow: 0 4px 10px 0 $black-shadow;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    max-width: $container-width;
+    padding: 0px 30px 6px;
+    width: 100%;
+}
+
+.logo {
+    height: auto;
+    width: 212px;
+}
+
+.logout {
+    color: $black;
+    font-family: Roboto;
+    font-size: 18px;
+    line-height: 21px;
+}
