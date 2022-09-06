@@ -5,22 +5,23 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
 import Button from 'components/Button';
-import buttonStyles from '../../components/Button/styles.module.scss';
 import { MAX_PASSWORD, MIN_PASSWORD } from 'constants/constants';
 import { User } from 'types/user';
 import Messages from 'components/Messages';
 
+import buttonStyles from '../../components/Button/styles.module.scss';
 import { signUp } from '../../services/UserService';
 
 import styles from './styles.module.scss';
 
 function SignUp() {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const minPassword = MIN_PASSWORD;
   const maxPassword = MAX_PASSWORD;
@@ -48,7 +49,6 @@ function SignUp() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
   } = useForm({
     mode: 'onTouched',
@@ -57,15 +57,15 @@ function SignUp() {
   });
 
   const { mutate, isLoading, isSuccess, isError, error } = useMutation((user: User) => signUp(user), {
-    onSuccess: (res) => {
-      // Go Dashboard
+    onSuccess: () => {
+      navigate('/');
     },
     onError: (err: any) => {
       if (!err?.errors) {
         toast.error(t('Services:genericError'));
       }
     }
-  })
+  });
 
   const onSubmit = (user: User) => {
     user.locale = i18n?.language;

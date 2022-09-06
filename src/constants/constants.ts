@@ -27,3 +27,21 @@ export const MOCK_SIGNUP_ERROR = {
     full_messages: ['Email has already been taken']
   }
 };
+export const MOCK_LOGIN = {
+  data: {
+    id: 1338,
+    email: 'prueba@j1h1m1.com',
+    provider: 'email',
+    uid: 'prueba@j1h1m1.com',
+    allow_password_change: false,
+    first_name: 'Julian',
+    last_name: 'Henao',
+    locale: 'es'
+  }
+};
+export const MOCK_LOGIN_ERROR = {
+  success: false,
+  errors: [
+    'Invalid login credentials. Please try again.'
+  ]
+};
