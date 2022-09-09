@@ -6,6 +6,7 @@ import 'scss/application.scss';
 import SignUp from 'screens/SignUp/index';
 import Login from 'screens/Login';
 import Layout from 'screens/Layout';
+import Home from 'screens/Home';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="sign_up" element={<SignUp />} />
+        <Route path="home" element={<Home />} />
       </Routes>
     </Layout>
   );

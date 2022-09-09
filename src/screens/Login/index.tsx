@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
@@ -21,6 +21,7 @@ import styles from './styles.module.scss';
 
 function Login() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const minPassword = MIN_PASSWORD;
   const maxPassword = MAX_PASSWORD;
@@ -53,8 +54,7 @@ function Login() {
 
   const { mutate, isLoading, isSuccess, isError, error } = useMutation((user: User) => login(user), {
     onSuccess: res => {
-      // Go Dashboard
-      console.log(res?.headers!['access-token'], res.headers?.uid, res.headers?.client);
+      navigate('/home');
     },
     onError: (err: any) => {
       if (!err?.errors) {

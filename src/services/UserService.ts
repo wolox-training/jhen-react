@@ -5,6 +5,9 @@ import { objectCamelToSnake } from 'utils/case';
 import { ServiceResponse } from './types/serviceResponse';
 import { SignUpResponse } from './types/signUpResponse';
 import { LoginResponse } from './types/loginResponse';
+import { ApiResponse } from 'apisauce';
+
+import localStorageService from './LocalStorageService';
 
 const userPath = '/users';
 
@@ -23,9 +26,22 @@ export function login(user: User) {
     .post<ServiceResponse<LoginResponse>>(`${userPath}/sign_in`, objectCamelToSnake(user))
     .then(res => {
       if (res.ok) {
+        const session = extractSession(res);
+        localStorageService.setValue('session', session);
         return res;
       }
 
       throw res.data;
     });
+}
+
+export function logoutSession() {
+  localStorageService.removeValue('session');
+}
+
+function extractSession(response: ApiResponse<any, any>) {
+  const headers: any = response.headers;
+  const { uid, client, 'access-token': accessToken } = headers;
+
+  return { uid, client, 'access-token': accessToken };
 }
