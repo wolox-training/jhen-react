@@ -1,19 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-
-import styles from './styles.module.scss';
-import { logoutSession } from 'services/UserService';
+import { useHistory } from 'react-router-dom';
 
 import logo from 'assets/logo-wolox-original.png';
+import { logoutSession } from 'services/UserService';
+
+import styles from './styles.module.scss';
 
 function NavBar() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const logout = () => {
     logoutSession();
-    navigate('/');
+    history.push('/');
   };
 
   return (
