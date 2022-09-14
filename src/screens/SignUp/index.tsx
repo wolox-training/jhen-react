@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import Container from 'components/Container';
 import Input from 'components/Input';
@@ -21,7 +21,7 @@ import styles from './styles.module.scss';
 
 function SignUp() {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const minPassword = MIN_PASSWORD;
   const maxPassword = MAX_PASSWORD;
@@ -58,7 +58,7 @@ function SignUp() {
 
   const { mutate, isLoading, isSuccess, isError, error } = useMutation((user: User) => signUp(user), {
     onSuccess: () => {
-      navigate('/');
+      history.push('/');
     },
     onError: (err: any) => {
       if (!err?.errors) {
