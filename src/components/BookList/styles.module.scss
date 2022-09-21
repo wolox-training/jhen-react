@@ -1,0 +1,47 @@
+@import '../../scss/variables/colors';
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: center;
+  margin: 110px 0px;
+  max-width: 910px;
+  width: 100%;
+}
+
+.book {
+  align-items: center;
+  background-color: $white;
+  box-shadow: 4px 4px 10px 0 $black-shadow;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: center;
+  padding: 28px;
+  width: 200px;
+}
+
+.cover {
+  height: 200px;
+  width: 142px;
+}
+
+.title {
+  color: $black;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.author {
+  color: $gray;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 8px;
+  width: 100%;
+}
