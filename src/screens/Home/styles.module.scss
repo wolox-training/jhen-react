@@ -1,4 +1,10 @@
+@import '../../scss/variables/colors';
+
 .home {
-  text-align: center;
+  align-items: center;
+  background-color: $cultured;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
   width: 100%;
 }
