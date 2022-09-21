@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function NotFound() {
-  return <p>There is nothing here: 404!</p>;
+  const { t } = useTranslation();
+
+  return <p>{t('NotFound:message')}</p>;
 }
 
 export default NotFound;
