@@ -4,9 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 
 import logo from 'assets/book-cover.png';
 import { getBooks } from 'services/BookService';
+import Loading from 'components/Spinner/components/loading';
+import Messages from 'components/Messages';
 
 import styles from './styles.module.scss';
-import Loading from 'components/Spinner/components/loading';
 
 function BookList() {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ function BookList() {
           <span className={styles.author}>{author}</span>
         </div>
       ))}
-      {isError && <p>{error}</p>}
+      {isError && error?.errors && <Messages type="error" messages={error.errors} />}
     </div>
   );
 }
