@@ -15,3 +15,14 @@ export function getBooks() {
       throw res.data;
     });
 }
+
+export function getBook(id: string) {
+  return api.get<ServiceResponse<BooksResponse>>(`${bookPath}/${id}`)
+    .then(res => {
+      if (res.ok) {
+        return res.data;
+      }
+
+      throw res.data;
+    });
+}
