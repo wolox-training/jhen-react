@@ -24,7 +24,7 @@ function App() {
           <PublicRoute path="/sign_up">
             <SignUp />
           </PublicRoute>
-          <PrivateRoute path="/home">
+          <PrivateRoute path="/">
             <ProtectedRoutes />
           </PrivateRoute>
           <Route path="*">

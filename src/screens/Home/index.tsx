@@ -7,7 +7,6 @@ import { setHeaders } from 'config/api';
 import { isAuthenticated } from 'services/UserService';
 import LocalStorageService from 'services/LocalStorageService';
 
-
 function Home() {
   if (isAuthenticated()) {
     const session = LocalStorageService.getValue('session');
