@@ -1,0 +1,23 @@
+.container {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 60px;
+  max-width: 100%;
+  width: 900px;
+}
+
+.back {
+  padding-left: 30px;
+  padding-top: 3px;
+  position: relative;
+  width: fit-content;
+
+  &::before {
+    content: url(../../assets/back-arrow.png);
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}
