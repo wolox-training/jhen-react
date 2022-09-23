@@ -1,0 +1,78 @@
+@import '../../scss/variables/colors';
+
+.book {
+  background-color: $white;
+  box-shadow: 4px 4px 10px 0 $black-shadow;
+  display: flex;
+  gap: 50px;
+  height: 416px;
+  padding: 24px;
+  width: 900px;
+}
+
+.image {
+  position: relative;
+}
+
+.cover {
+  height: 368px;
+  width: 261px;
+}
+
+.badge {
+  bottom: 270px;
+  height: 118px;
+  left: 205px;
+  position: absolute;
+  transform: rotate(5deg);
+  width: 94px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.header {
+  border-bottom: $pear 4px solid;
+  width: 540px;
+}
+
+.title {
+  color: $black;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 700;
+  height: 39px;
+  line-height: 38px;
+  margin-bottom: 12px;
+  margin-right: 8px;
+}
+
+.subhead {
+  color: $gray;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 700;
+  height: 30px;
+  line-height: 28px;
+}
+
+.property {
+  color: $black;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  height: 22px;
+  line-height: 24px;
+  margin-right: 8px;
+}
+
+.value {
+  color: $gray;
+  font-family: Roboto;
+  font-size: 20px;
+  height: 22px;
+  line-height: 24px;
+}
