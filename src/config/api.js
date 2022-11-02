@@ -37,4 +37,8 @@ export const apiSetup = dispatch => {
   });
 };
 
+export function setHeaders(session) {
+  api.setHeaders({ ...session });
+}
+
 export default api;
